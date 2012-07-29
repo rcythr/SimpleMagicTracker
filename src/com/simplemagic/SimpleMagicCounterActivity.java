@@ -1,3 +1,17 @@
+/*  
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 package com.simplemagic;
 
 import java.util.ArrayList;
@@ -16,8 +30,13 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+/**
+ * The main activity of the Simple Magic Tracker program.
+ * @author Richard Laughlin
+ */
 public class SimpleMagicCounterActivity extends Activity {
 	
+	//Constants
 	private static final int NEW_GAME = 1;
     private static final int NEW_PLAYER = 2;
     private static final int REMOVE_PLAYER = 3;
@@ -25,29 +44,14 @@ public class SimpleMagicCounterActivity extends Activity {
     private static final int ROLL_D6 = 5;
     private static final int ROLL_D20 = 6;
 	
+    //Members
 	private LinearLayout mainLayout;
 	private ArrayList<LinearLayout> players = new ArrayList<LinearLayout>();
     
-	private class ClickListener implements OnClickListener {
-
-		private EditText editor;
-		private int delta;
-		
-		ClickListener(EditText editor, int delta) {
-			this.editor = editor;
-			this.delta = delta;
-		}
-		
-		public void onClick(View v) {
-			try {
-				editor.setText(Integer.toString(Integer.parseInt(editor.getText().toString()) + delta));
-			} catch(Exception e) {
-				editor.setText(Integer.toString(delta));
-			}
-		}
-		
-	}
-
+	/**
+	 * Creates a new player's panel
+	 * @return the view that contains the new player's panel
+	 */
 	private View createPlayer() {
 		LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		LinearLayout view = (LinearLayout) layoutInflater.inflate(R.layout.row, null);
@@ -88,6 +92,7 @@ public class SimpleMagicCounterActivity extends Activity {
         setContentView(mainView);
     }
     
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
     	menu.add(Menu.NONE, NEW_GAME, Menu.NONE, "New Game");
     	menu.add(Menu.NONE, NEW_PLAYER, Menu.NONE, "New Player");
@@ -132,5 +137,27 @@ public class SimpleMagicCounterActivity extends Activity {
         }
     }
     
-    
+    /**
+	 * A listener used to handle the pressing of the delta buttons
+	 * @author Richard Laughlin
+	 */
+	private class ClickListener implements OnClickListener {
+
+		private EditText editor;
+		private int delta;
+		
+		public ClickListener(EditText editor, int delta) {
+			this.editor = editor;
+			this.delta = delta;
+		}
+		
+		public void onClick(View v) {
+			try {
+				editor.setText(Integer.toString(Integer.parseInt(editor.getText().toString()) + delta));
+			} catch(Exception e) {
+				editor.setText(Integer.toString(delta));
+			}
+		}
+		
+	}
 }
