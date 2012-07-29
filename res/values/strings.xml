@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Simple Magic Tracker</string>
+    <string name="sub5">-5</string>
+    <string name="sub1">-1</string>
+    <string name="add1">+1</string>
+    <string name="add5">+5</string>
+
+</resources>
