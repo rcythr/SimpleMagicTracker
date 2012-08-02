@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Simple Magic Tracker</string>
+    
+    <string name="sub5">-5</string>
+    <string name="sub1">-1</string>
+    <string name="add1">+1</string>
+    <string name="add5">+5</string>
+    
+    <string name="player">Joueur</string>
+    <string name="new_game">Nouveau Jeu</string>
+    <string name="new_player">Nouveau Joueur</string>
+    <string name="remove_player">Supprimer un joueur</string>
+    <string name="random_player">Joueur au hasard</string>
+    <string name="roll_d6">Lancer D6</string>
+    <string name="roll_d20">Lancer D20</string>
+    
+</resources>

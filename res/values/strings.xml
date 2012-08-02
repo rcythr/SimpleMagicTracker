@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Simple Magic Tracker</string>
+    
     <string name="sub5">-5</string>
     <string name="sub1">-1</string>
     <string name="add1">+1</string>
     <string name="add5">+5</string>
-
+    
+    <string name="player">Player</string>
+    <string name="new_game">New Game</string>
+    <string name="new_player">New Player</string>
+    <string name="remove_player">Remove Player</string>
+    <string name="random_player">Random Player</string>
+    <string name="roll_d6">Roll D6</string>
+    <string name="roll_d20">Roll D20</string>
+    
 </resources>

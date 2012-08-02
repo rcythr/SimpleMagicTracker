@@ -16,11 +16,14 @@ package com.simplemagic;
 
 import java.util.ArrayList;
 
+import com.simplemagic.R;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,12 +40,6 @@ import android.widget.Toast;
 public class SimpleMagicCounterActivity extends Activity {
 	
 	//Constants
-	private static final int NEW_GAME = 1;
-    private static final int NEW_PLAYER = 2;
-    private static final int REMOVE_PLAYER = 3;
-    private static final int SELECT_RANDOM_PLAYER = 4;
-    private static final int ROLL_D6 = 5;
-    private static final int ROLL_D20 = 6;
 	
     //Members
 	private LinearLayout mainLayout;
@@ -57,20 +54,35 @@ public class SimpleMagicCounterActivity extends Activity {
 		LinearLayout view = (LinearLayout) layoutInflater.inflate(R.layout.row, null);
 		players.add(view);
 		
-		EditText editor = (EditText) view.findViewById(R.id.editText1);
-		editor.setText("20");
+		EditText health = (EditText) view.findViewById(R.id.health);
+		health.setText("20");
 		
-		Button sub5 = (Button) view.findViewById(R.id.sub5);
-		sub5.setOnClickListener(new ClickListener(editor, -5));
+		Button sub5_health = (Button) view.findViewById(R.id.sub5_health);
+		sub5_health.setOnClickListener(new ClickListener(health, -5));
 		
-		Button sub1 = (Button) view.findViewById(R.id.sub1);
-		sub1.setOnClickListener(new ClickListener(editor, -1));
+		Button sub1_health = (Button) view.findViewById(R.id.sub1_health);
+		sub1_health.setOnClickListener(new ClickListener(health, -1));
 		
-		Button add1 = (Button) view.findViewById(R.id.add1);
-		add1.setOnClickListener(new ClickListener(editor, 1));
+		Button add1_health = (Button) view.findViewById(R.id.add1_health);
+		add1_health.setOnClickListener(new ClickListener(health, 1));
 		
-		Button add5 = (Button) view.findViewById(R.id.add5);
-		add5.setOnClickListener(new ClickListener(editor, 5));
+		Button add5_health = (Button) view.findViewById(R.id.add5_health);
+		add5_health.setOnClickListener(new ClickListener(health, 5));
+		
+		EditText poison = (EditText) view.findViewById(R.id.poison);
+		poison.setText("0");
+		
+		Button sub5_poison = (Button) view.findViewById(R.id.sub5_poison);
+		sub5_poison.setOnClickListener(new ClickListener(poison, -5));
+		
+		Button sub1_poison = (Button) view.findViewById(R.id.sub1_poison);
+		sub1_poison.setOnClickListener(new ClickListener(poison, -1));
+		
+		Button add1_poison = (Button) view.findViewById(R.id.add1_poison);
+		add1_poison.setOnClickListener(new ClickListener(poison, 1));
+		
+		Button add5_poison = (Button) view.findViewById(R.id.add5_poison);
+		add5_poison.setOnClickListener(new ClickListener(poison, 5));
 		
 		return view;
 	}
@@ -94,12 +106,8 @@ public class SimpleMagicCounterActivity extends Activity {
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-    	menu.add(Menu.NONE, NEW_GAME, Menu.NONE, "New Game");
-    	menu.add(Menu.NONE, NEW_PLAYER, Menu.NONE, "New Player");
-    	menu.add(Menu.NONE, REMOVE_PLAYER, Menu.NONE, "Remove Player");
-    	menu.add(Menu.NONE, SELECT_RANDOM_PLAYER, Menu.NONE, "Random Player");
-    	menu.add(Menu.NONE, ROLL_D6, Menu.NONE, "Roll D6");
-    	menu.add(Menu.NONE, ROLL_D20, Menu.NONE, "Roll D20");
+    	MenuInflater inflate = getMenuInflater();
+    	inflate.inflate(R.layout.menu, menu);
 		return true;
     }
     
@@ -107,29 +115,32 @@ public class SimpleMagicCounterActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case NEW_GAME:                
+            case R.id.new_game:                
                 for(LinearLayout view : players) {
-                	EditText editor = (EditText) view.findViewById(R.id.editText1);
-                	editor.setText("20");
+                	EditText health = (EditText) view.findViewById(R.id.health);
+                	health.setText("20");
+                	
+                	EditText poison = (EditText) view.findViewById(R.id.poison);
+                	poison.setText("0");
                 }
                 return true;
-            case NEW_PLAYER:
+            case R.id.new_player:
             	mainLayout.addView(createPlayer());
             	return true;
-            case REMOVE_PLAYER:
+            case R.id.remove_player:
             	if(players.size() > 2) {
 	            	LinearLayout removed = players.get(players.size()-1);
 	            	players.remove(players.size()-1);
 	            	removed.setVisibility(View.GONE);
             	}
             	return true;
-            case SELECT_RANDOM_PLAYER:
-            	Toast.makeText(this, "Player "+Long.toString((System.currentTimeMillis() % players.size()) + 1), Toast.LENGTH_SHORT).show();
+            case R.id.random_player:
+            	Toast.makeText(this, getString(R.string.player)+" "+Long.toString((System.currentTimeMillis() % players.size()) + 1), Toast.LENGTH_SHORT).show();
             	return true;
-            case ROLL_D6:
+            case R.id.roll_d6:
             	Toast.makeText(this, Long.toString((System.currentTimeMillis() % 6) + 1), Toast.LENGTH_SHORT).show();
             	return true;
-            case ROLL_D20:
+            case R.id.roll_d20:
             	Toast.makeText(this, Long.toString((System.currentTimeMillis() % 20) + 1), Toast.LENGTH_SHORT).show();
             	return true;
             default:

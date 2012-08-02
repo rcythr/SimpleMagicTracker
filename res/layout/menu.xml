@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/new_game" android:title="@string/new_game" />
+    <item android:id="@+id/new_player" android:title="@string/new_player" />
+    <item android:id="@+id/remove_player" android:title="@string/remove_player" />
+    <item android:id="@+id/random_player" android:title="@string/random_player" />
+    <item android:id="@+id/roll_d6" android:title="@string/roll_d6" />
+    <item android:id="@+id/roll_d20" android:title="@string/roll_d20" />
+</menu>

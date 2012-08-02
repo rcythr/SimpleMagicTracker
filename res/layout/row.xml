@@ -2,43 +2,101 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal" >
-
-    <Button
-        android:id="@+id/sub5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:text="@string/sub5" />
-
-    <Button
-        android:id="@+id/sub1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:text="@string/sub1" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="5"
-        android:ems="10"
-        android:inputType="numberSigned" >
-    </EditText>
+	    <Button
+	        android:id="@+id/sub5_health"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="3"
+	        android:text="@string/sub5" />
+	
+	    <Button
+	        android:id="@+id/sub1_health"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="3"
+	        android:text="@string/sub1" />
+	
+	    <EditText
+	        android:id="@+id/health"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="5"
+	        android:ems="10"
+	        android:inputType="numberSigned" >
+	    </EditText>
+	    
+	    <Button
+	        android:id="@+id/add1_health"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="3"
+	        android:text="@string/add1" />
+	
+	    <Button
+	        android:id="@+id/add5_health"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="3"
+	        android:text="@string/add5" />
+    </LinearLayout>
     
-    <Button
-        android:id="@+id/add1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:text="@string/add1" />
-
-    <Button
-        android:id="@+id/add5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:text="@string/add5" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+	    <Button
+	        android:id="@+id/sub5_poison"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="3"
+	        android:text="@string/sub5" />
+	
+	    <Button
+	        android:id="@+id/sub1_poison"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="3"
+	        android:text="@string/sub1" />
+	
+	    <EditText
+	        android:id="@+id/poison"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="5"
+	        android:ems="10"
+	        android:inputType="numberSigned" >
+	    </EditText>
+	    
+	    <Button
+	        android:id="@+id/add1_poison"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="3"
+	        android:text="@string/add1" />
+	
+	    <Button
+	        android:id="@+id/add5_poison"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="3"
+	        android:text="@string/add5" />
+    </LinearLayout>
+    
+    <ImageView
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:src="@drawable/black_white_gradient"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:scaleType="fitXY"
+	    android:paddingLeft="5dp"
+	    android:paddingRight="5dp"
+	    android:paddingBottom="2dp"
+	    android:paddingTop="2dp" />
 
 </LinearLayout>
