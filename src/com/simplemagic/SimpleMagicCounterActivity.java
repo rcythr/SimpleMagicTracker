@@ -49,13 +49,13 @@ public class SimpleMagicCounterActivity extends Activity {
 	 * Creates a new player's panel
 	 * @return the view that contains the new player's panel
 	 */
-	private View createPlayer() {
+	private View createPlayer(Integer default_health, Integer default_poison) {
 		LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		LinearLayout view = (LinearLayout) layoutInflater.inflate(R.layout.row, null);
 		players.add(view);
 		
 		EditText health = (EditText) view.findViewById(R.id.health);
-		health.setText("20");
+		health.setText(default_health.toString());
 		
 		Button sub5_health = (Button) view.findViewById(R.id.sub5_health);
 		sub5_health.setOnClickListener(new ClickListener(health, -5));
@@ -70,7 +70,7 @@ public class SimpleMagicCounterActivity extends Activity {
 		add5_health.setOnClickListener(new ClickListener(health, 5));
 		
 		EditText poison = (EditText) view.findViewById(R.id.poison);
-		poison.setText("0");
+		poison.setText(default_poison.toString());
 		
 		Button sub5_poison = (Button) view.findViewById(R.id.sub5_poison);
 		sub5_poison.setOnClickListener(new ClickListener(poison, -5));
@@ -97,11 +97,39 @@ public class SimpleMagicCounterActivity extends Activity {
         mainLayout = new LinearLayout(this);
         mainLayout.setOrientation(LinearLayout.VERTICAL);
         
-        mainLayout.addView(createPlayer());
-        mainLayout.addView(createPlayer());
+        if(savedInstanceState == null) {
+        	mainLayout.addView(createPlayer(20, 0));
+        	mainLayout.addView(createPlayer(20, 0));
+        } else {
+        	ArrayList<Integer> health = savedInstanceState.getIntegerArrayList("health");
+        	ArrayList<Integer> poison = savedInstanceState.getIntegerArrayList("poison");
+        	
+        	int player_count = Math.min(health.size(), poison.size()); 
+        	for(int i = 0; i < player_count; ++i)
+        	{
+        		createPlayer(health.get(i), poison.get(i));
+        	}
+        }
         
         mainView.addView(mainLayout);
         setContentView(mainView);
+    }
+    
+    @Override
+    public void onSaveInstanceState(Bundle instanceState) {
+    	ArrayList<Integer> health = new ArrayList<Integer>();
+    	ArrayList<Integer> poison = new ArrayList<Integer>();
+    	
+    	for(LinearLayout l : players) {
+    		EditText player_health = (EditText) l.findViewById(R.id.health);
+    		EditText player_poison = (EditText) l.findViewById(R.id.poison);
+    		
+    		health.add(Integer.parseInt(player_health.getText().toString()));
+    		health.add(Integer.parseInt(player_poison.getText().toString()));
+    	}
+    	
+    	instanceState.putIntegerArrayList("health", health);
+    	instanceState.putIntegerArrayList("poison", poison);
     }
     
     @Override
@@ -125,7 +153,7 @@ public class SimpleMagicCounterActivity extends Activity {
                 }
                 return true;
             case R.id.new_player:
-            	mainLayout.addView(createPlayer());
+            	mainLayout.addView(createPlayer(20, 0));
             	return true;
             case R.id.remove_player:
             	if(players.size() > 2) {
