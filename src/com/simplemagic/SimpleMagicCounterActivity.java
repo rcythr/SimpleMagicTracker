@@ -125,7 +125,7 @@ public class SimpleMagicCounterActivity extends Activity {
     		EditText player_poison = (EditText) l.findViewById(R.id.poison);
     		
     		health.add(Integer.parseInt(player_health.getText().toString()));
-    		health.add(Integer.parseInt(player_poison.getText().toString()));
+    		poison.add(Integer.parseInt(player_poison.getText().toString()));
     	}
     	
     	instanceState.putIntegerArrayList("health", health);
