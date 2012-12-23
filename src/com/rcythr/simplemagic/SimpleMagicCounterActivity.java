@@ -12,11 +12,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-package com.simplemagic;
+package com.rcythr.simplemagic;
 
 import java.util.ArrayList;
 
-import com.simplemagic.R;
+import com.rcythr.simplemagic.R;
 
 import android.app.Activity;
 import android.content.Context;
@@ -107,7 +107,7 @@ public class SimpleMagicCounterActivity extends Activity {
         	int player_count = Math.min(health.size(), poison.size()); 
         	for(int i = 0; i < player_count; ++i)
         	{
-        		createPlayer(health.get(i), poison.get(i));
+        		mainLayout.addView(createPlayer(health.get(i), poison.get(i)));
         	}
         }
         
@@ -130,6 +130,7 @@ public class SimpleMagicCounterActivity extends Activity {
     	
     	instanceState.putIntegerArrayList("health", health);
     	instanceState.putIntegerArrayList("poison", poison);
+    	//super.onSaveInstanceState(instanceState);
     }
     
     @Override

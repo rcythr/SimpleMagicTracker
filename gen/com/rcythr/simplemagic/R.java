@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.simplemagic;
+package com.rcythr.simplemagic;
 
 public final class R {
     public static final class attr {
